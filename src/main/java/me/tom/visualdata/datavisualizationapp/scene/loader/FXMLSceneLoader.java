@@ -9,7 +9,7 @@ public class FXMLSceneLoader implements SceneLoader {
     @Override
     public Scene load(String name, int width, int height) throws SceneLoaderException {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource(String.format("scene/", name)));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource(String.format("scene/%s.fxml", name)));
             return new Scene(fxmlLoader.load(), width, height);
         } catch(IOException e) {
             throw new SceneLoaderException(e);
