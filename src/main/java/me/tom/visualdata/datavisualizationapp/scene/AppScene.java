@@ -24,7 +24,7 @@ public enum AppScene {
      *
      * @param stage {@link Stage} to set the active scene of
      */
-    void makeActive(Stage stage) {
+    public void makeActive(Stage stage) {
         assert stage != null : String.format("Cannot make %s active: stage null", getClass().getSimpleName());
         stage.setScene(scene);
     }
