@@ -13,7 +13,7 @@ public interface SceneLoader {
      * @param height Height from the scene
      * @return Loaded {@link Scene}
      *
-     * @throws IOException Thrown when scene could not be loaded
+     * @throws SceneLoaderException Thrown when scene could not be loaded
      */
-    Scene load(String name, int width, int height) throws IOException;
+    Scene load(String name, int width, int height) throws SceneLoaderException;
 }
