@@ -1,0 +1,6 @@
+/* navigation-bar.css */
+@import '../../../css/style.css';
+
+#navigation-bar {
+    -fx-background-color: -primary-color;
+}
