@@ -1,4 +1,4 @@
-package me.tom.visualdata.datavisualizationapp;
+package me.tom.visualdata;
 
 public class VisualizationAppException extends Exception {
     protected VisualizationAppException(String message) {
