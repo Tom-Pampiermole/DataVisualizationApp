@@ -1,8 +1,6 @@
-package me.tom.visualdata.datavisualizationapp.scene.loader;
+package me.tom.visualdata.scene.loader;
 
 import javafx.scene.Scene;
-
-import java.io.IOException;
 
 public interface SceneLoader {
     /**
