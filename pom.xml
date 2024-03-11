@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                me.tom.visualdata.datavisualizationapp/me.tom.visualdata.datavisualizationapp.HelloApplication
+                                me.tom.visualdata.datavisualizationapp/me.tom.visualdata.HelloApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
