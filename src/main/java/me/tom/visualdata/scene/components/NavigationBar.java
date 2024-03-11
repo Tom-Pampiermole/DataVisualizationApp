@@ -25,6 +25,7 @@ public class NavigationBar extends VBox implements Initializable {
         sceneProperty().addListener((observable, oldScene, newScene) -> {
             if(newScene != null) {
                 prefHeightProperty().bind(newScene.heightProperty());
+                prefWidthProperty().bind(newScene.widthProperty().divide(5));
             }
         });
     }
