@@ -4,6 +4,7 @@ module me.tom.visualdata.datavisualizationapp {
 
 
     opens scene.fxml to javafx.fxml;
+    opens scene.fxml.components to javafx.fxml;
     opens me.tom.visualdata to javafx.fxml;
     exports me.tom.visualdata;
     exports me.tom.visualdata.scene.components;
