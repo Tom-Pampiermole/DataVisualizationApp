@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+
+<fx:root type="HBox" xmlns="http://javafx.com/javafx"  xmlns:fx="http://java.sun.com/JSP/Page"
+         fx:controller="me.tom.visualdata.scene.components.NavigationBar">
+</fx:root>
