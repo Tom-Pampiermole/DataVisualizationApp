@@ -1,9 +1,9 @@
-package me.tom.visualdata.datavisualizationapp.scene;
+package me.tom.visualdata.scene;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import me.tom.visualdata.datavisualizationapp.scene.loader.FXMLSceneLoader;
-import me.tom.visualdata.datavisualizationapp.scene.loader.SceneLoader;
+import me.tom.visualdata.scene.loader.FXMLSceneLoader;
+import me.tom.visualdata.scene.loader.SceneLoader;
 
 public enum AppScene {
     DASHBOARD("dashboard")
@@ -36,6 +36,6 @@ public enum AppScene {
     private interface Defaults {
         SceneLoader SCENE_LOADER = new FXMLSceneLoader();
         int SCENE_WIDTH = 1200;
-        int SCENE_HEIGHT = 1000;
+        int SCENE_HEIGHT = 650;
     }
 }
