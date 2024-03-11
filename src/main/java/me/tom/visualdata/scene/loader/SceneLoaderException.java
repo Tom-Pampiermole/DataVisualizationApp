@@ -1,8 +1,8 @@
 package me.tom.visualdata.scene.loader;
 
-import me.tom.visualdata.VisualizationAppException;
+import me.tom.visualdata.scene.SceneException;
 
-public class SceneLoaderException extends VisualizationAppException {
+public class SceneLoaderException extends SceneException {
     protected SceneLoaderException(Exception exception) {
         super(exception);
     }
