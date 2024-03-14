@@ -10,7 +10,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class NavigationBar extends VBox implements Initializable {
-    private static final String COMPONENT_NAME = "NavigationBar";
+    private static final String COMPONENT_NAME = "navigation/NavigationBar";
 
 
     public NavigationBar() throws ComponentException {
