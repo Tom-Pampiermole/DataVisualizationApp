@@ -19,5 +19,6 @@ public class NavigationBarButton extends Button implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setMaxWidth(Integer.MAX_VALUE);
+
     }
 }
