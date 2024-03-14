@@ -1,6 +1,7 @@
 package me.tom.visualdata.scene.components.navigation;
 
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import me.tom.visualdata.scene.components.ComponentException;
@@ -24,7 +25,7 @@ public class NavigationBar extends VBox implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setVgrow(this, Priority.ALWAYS);
 
-        ComponentUtil.bindPrefSizeToActiveSceneOfRegion(this);
+        ComponentUtil.bindPrefSizeToActiveSceneOfRegion(this, Scene::widthProperty, scene -> scene.heightProperty().divide(5));
     }
 
 
