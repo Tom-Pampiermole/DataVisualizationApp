@@ -14,6 +14,16 @@ public class ComponentUtil {
      *  parent scene changes.
      *
      * @param region {@link Region} to bind its' size properties of
+     */
+    public static void bindPrefSizeToActiveSceneOfRegion(Region region) {
+        bindPrefSizeToActiveSceneOfRegion(region, Scene::widthProperty, Scene::heightProperty);
+    }
+
+    /**
+     *  Binds the preferred size properties of given {@link Region} to the size of parent scene to be updated when the
+     *  parent scene changes. Given functions are applied to mutate the value from the width and height properties
+     *
+     * @param region {@link Region} to bind its' size properties of
      * @param widthPropertyFunction Function to be used to bind the width property to
      * @param heightPropertyFunction Function to be used to bind the height property to
      */
