@@ -4,6 +4,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import me.tom.visualdata.scene.components.ComponentException;
+import me.tom.visualdata.scene.components.ComponentUtil;
 import me.tom.visualdata.scene.components.loader.FXMLComponentLoader;
 
 import java.net.URL;
@@ -23,12 +24,7 @@ public class NavigationBar extends VBox implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setVgrow(this, Priority.ALWAYS);
 
-        sceneProperty().addListener((observable, oldScene, newScene) -> {
-            if(newScene != null) {
-                prefHeightProperty().bind(newScene.heightProperty());
-                prefWidthProperty().bind(newScene.widthProperty().divide(5));
-            }
-        });
+        ComponentUtil.bindPrefSizeToActiveSceneOfRegion(this);
     }
 
 
