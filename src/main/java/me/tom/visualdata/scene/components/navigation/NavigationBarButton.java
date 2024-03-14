@@ -3,6 +3,7 @@ package me.tom.visualdata.scene.components.navigation;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import me.tom.visualdata.scene.components.ComponentException;
+import me.tom.visualdata.scene.components.ComponentUtil;
 import me.tom.visualdata.scene.components.loader.FXMLComponentLoader;
 
 import java.net.URL;
@@ -18,7 +19,6 @@ public class NavigationBarButton extends Button implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        setMaxWidth(Integer.MAX_VALUE);
-
+        ComponentUtil.bindPrefSizeToActiveSceneOfRegion(this);
     }
 }
