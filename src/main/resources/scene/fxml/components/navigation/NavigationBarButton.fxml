@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-
-<fx:root type="Button" xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            style="-fx-background-color: red">
+<fx:root type="Button"
+         id="navigation-bar-button"
+         stylesheets="@navigation-bar-button.css"
+         xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 
 </fx:root>
