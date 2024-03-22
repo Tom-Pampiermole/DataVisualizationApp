@@ -1,0 +1,10 @@
+/* navigation-bar-button.css */
+@import '../../../css/style.css';
+
+#navigation-bar-button {
+    -fx-background-color: -primary-color;
+}
+
+#navigation-bar-button:hover {
+    -fx-background-color: -primay-color-80;
+}
