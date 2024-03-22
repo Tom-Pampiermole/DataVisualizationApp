@@ -25,7 +25,7 @@ public class NavigationBar extends VBox implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setVgrow(this, Priority.ALWAYS);
 
-        ComponentUtil.bindPrefSizeToActiveSceneOfRegion(this, Scene::widthProperty, scene -> scene.heightProperty().divide(5));
+        ComponentUtil.bindPrefSizeToActiveSceneOfRegion(this, Scene::widthProperty, scene -> scene.heightProperty().divide(3));
     }
 
 
