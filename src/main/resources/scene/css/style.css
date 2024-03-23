@@ -2,7 +2,9 @@
 
 * {
     -primary-color: #23243a;
-    -primay-color-80: #42446e;
+    -primary-color-80: #42446e;
     -background-color: #ffffff;
     -secondary-background-color: #d0d0d0;
+
+    -default-spacing: 1em;
 }
