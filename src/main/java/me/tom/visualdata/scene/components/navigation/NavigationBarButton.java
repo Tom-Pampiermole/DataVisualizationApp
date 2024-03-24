@@ -50,7 +50,8 @@ public class NavigationBarButton extends Button implements Initializable {
         icon.fitWidthProperty().bind(details.widthProperty().divide(DETAILS_COLUMN_AMOUNT).multiply(ICON_COLUMN_SPAN));
 
         label.prefWidthProperty().bind(details.widthProperty().divide(DETAILS_COLUMN_AMOUNT).multiply(LABEL_COLUMN_SPAN));
-        label.styleProperty().bind(Bindings.concat("-fx-font-size: ", details.widthProperty().divide(LABEL_FONT_SIZE_DIVISION_FACTOR), ";"));
+        label.styleProperty().bind(
+                Bindings.concat("-fx-font-size: ", details.widthProperty().divide(LABEL_FONT_SIZE_DIVISION_FACTOR), ";"));
     }
 
     /**
