@@ -2,6 +2,7 @@
 
 <?import javafx.scene.layout.*?>
 <?import me.tom.visualdata.scene.components.navigation.NavigationBar?>
+<?import me.tom.visualdata.scene.components.chart.DataChart ?>
 
 
 <BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
@@ -10,6 +11,6 @@
         <NavigationBar />
     </left>
     <right>
-
+        <chart />
     </right>
 </BorderPane>
