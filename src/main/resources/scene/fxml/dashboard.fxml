@@ -11,6 +11,6 @@
         <NavigationBar />
     </left>
     <right>
-        <chart />
+        <DataChart />
     </right>
 </BorderPane>
