@@ -34,6 +34,7 @@ public class TestDataSheetEntry {
     @Test
     void given_WhenInstantiate_EntryTypeObject_ExpectedToStringMatches() throws DataSheetException {
         entry = new DefaultDataSheetEntry<>(Object.class, ENTRY_VALUE);
+        assertEquals(Object.class, entry.getType());
         assertToStringMatches(Object.class, ENTRY_VALUE);
     }
 
@@ -47,6 +48,7 @@ public class TestDataSheetEntry {
     void givenEntryWithTypeString_WhenGetType_ExpectedMatches() throws DataSheetException {
         entry = new DefaultDataSheetEntry<>(String.class, ENTRY_VALUE);
         assertEquals(ENTRY_GENERIC_TYPE, entry.getType());
+        assertToStringMatches(String.class, ENTRY_VALUE);
     }
 
     @Test
