@@ -1,5 +1,6 @@
-package me.tom.visualdata.data.type.sheet;
+package me.tom.visualdata.data.type.sheet.entry;
 
+import me.tom.visualdata.data.type.sheet.DataSheetException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,18 +21,18 @@ public class TestDataSheetEntry {
     }
 
     @Test
-    void given_WhenGenericTypeNull_ExpectedException() {
+    void given_WhenInstantiate_GenericTypeNull_ExpectedException() {
         assertThrows(DataSheetException.class, () -> new DefaultDataSheetEntry<>(null, ENTRY_VALUE));
     }
 
     @Test
-    void given_WhenEntryNull_ExpectedToStringMatches() throws DataSheetException {
+    void given_WhenInstantiate_EntryNull_ExpectedToStringMatches() throws DataSheetException {
         entry = new DefaultDataSheetEntry<>(ENTRY_GENERIC_TYPE, null);
         assertToStringMatches(ENTRY_GENERIC_TYPE, null);
     }
 
     @Test
-    void given_WhenEntryTypeObject_ExpectedToStringMatches() throws DataSheetException {
+    void given_WhenInstantiate_EntryTypeObject_ExpectedToStringMatches() throws DataSheetException {
         entry = new DefaultDataSheetEntry<>(Object.class, ENTRY_VALUE);
         assertToStringMatches(Object.class, ENTRY_VALUE);
     }
