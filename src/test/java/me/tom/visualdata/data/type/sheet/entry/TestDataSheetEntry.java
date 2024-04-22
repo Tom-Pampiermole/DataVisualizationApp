@@ -4,8 +4,7 @@ import me.tom.visualdata.data.type.sheet.DataSheetException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestDataSheetEntry {
     private static final String ENTRY_CLASS_NAME = DefaultDataSheetEntry.class.getSimpleName();
@@ -26,16 +25,21 @@ public class TestDataSheetEntry {
     }
 
     @Test
+    void given_WhenInstantiate_ExpectedToStringMatches() throws DataSheetEntryException {
+        entry = new DefaultDataSheetEntry<>(String.class, ENTRY_VALUE);
+        assertEquals(String.format("%s: {\n\"type\": %s,\n\"value\": %s\n}", ENTRY_CLASS_NAME, value, genericType), entry.toString());
+    }
+
+    @Test
     void given_WhenInstantiate_EntryNull_ExpectedToStringMatches() throws DataSheetException {
         entry = new DefaultDataSheetEntry<>(ENTRY_GENERIC_TYPE, null);
-        assertToStringMatches(ENTRY_GENERIC_TYPE, null);
+        assertNull(entry.getValue());
     }
 
     @Test
     void given_WhenInstantiate_EntryTypeObject_ExpectedToStringMatches() throws DataSheetException {
         entry = new DefaultDataSheetEntry<>(Object.class, ENTRY_VALUE);
         assertEquals(Object.class, entry.getType());
-        assertToStringMatches(Object.class, ENTRY_VALUE);
     }
 
     @Test
@@ -48,25 +52,12 @@ public class TestDataSheetEntry {
     void givenEntryWithTypeString_WhenGetType_ExpectedMatches() throws DataSheetException {
         entry = new DefaultDataSheetEntry<>(String.class, ENTRY_VALUE);
         assertEquals(ENTRY_GENERIC_TYPE, entry.getType());
-        assertToStringMatches(String.class, ENTRY_VALUE);
     }
 
     @Test
     void givenEntryWithTypeObject_WhenGetType_ExpectedMatches() throws DataSheetException {
         entry = new DefaultDataSheetEntry<>(Object.class, ENTRY_VALUE);
         assertEquals(Object.class, entry.getType());
-    }
-
-
-
-    /**
-     * Asserts whether {@link #entry#toString()} matches a string built of given parameters
-     *
-     * @param genericType Expected generic type of {@link #entry}
-     * @param value Expected value of {@link #entry}
-     */
-    private void assertToStringMatches(Class<?> genericType, Object value) {
-        assertEquals(String.format("%s: {\n\"type\": %s,\n\"value\": %s\n}", ENTRY_CLASS_NAME, value, genericType), entry.toString());
     }
 
 }
