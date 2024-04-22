@@ -2,14 +2,15 @@ package me.tom.visualdata.data.type.sheet;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public interface DataSheet {
     /**
-     *  Gets the name of every row or an empty list when no rows are defined.
+     *  Gets a {@link Set} containing the name of each row
      *
-     * @return Name of every row
+     * @return {@link Set} containing the name of each row
      */
-    List<String> getRowNames();
+    Set<String> getRowNames();
 
     /**
      *  Gets a {@link List} containing each {@link DataSheetEntry} from row of given index
