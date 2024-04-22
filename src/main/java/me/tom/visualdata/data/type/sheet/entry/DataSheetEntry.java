@@ -1,4 +1,4 @@
-package me.tom.visualdata.data.type.sheet;
+package me.tom.visualdata.data.type.sheet.entry;
 
 public interface DataSheetEntry<T> {
 
