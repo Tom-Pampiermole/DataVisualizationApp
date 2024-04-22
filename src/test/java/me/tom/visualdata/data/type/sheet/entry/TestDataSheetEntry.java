@@ -27,7 +27,7 @@ public class TestDataSheetEntry {
     @Test
     void given_WhenInstantiate_ExpectedToStringMatches() throws DataSheetEntryException {
         entry = new DefaultDataSheetEntry<>(String.class, ENTRY_VALUE);
-        assertEquals(String.format("%s: {\n\"type\": %s,\n\"value\": %s\n}", ENTRY_CLASS_NAME, value, genericType), entry.toString());
+        assertEquals(String.format("%s: {\n\"type\": %s,\n\"value\": %s\n}", ENTRY_CLASS_NAME, ENTRY_VALUE, String.class), entry.toString());
     }
 
     @Test
