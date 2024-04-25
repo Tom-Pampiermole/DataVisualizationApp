@@ -203,7 +203,7 @@ public class TestDataSheetRow {
      * @param entries Expected entries of {@link DataSheetRow}
      */
     private void assertToStringMatches(String entries) {
-        assertEquals(String.format("%s: {\n\"type\": %s,\n\"entries\": [%s]\n}", DATASHEET_ROW_CLASS_NAME, DATASHEET_ROW_GENERIC_TYPE, entries), entry.toString());
+        assertEquals(String.format("%s: {\n\"type\": %s,\n\"entries\": [%s]\n}", DATASHEET_ROW_CLASS_NAME, DATASHEET_ROW_GENERIC_TYPE, entries), row.toString());
     }
 
 }
