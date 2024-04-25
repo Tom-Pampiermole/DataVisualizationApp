@@ -1,10 +1,23 @@
 package me.tom.visualdata.data.type.sheet;
 
+import me.tom.visualdata.data.type.sheet.entry.DataSheetEntry;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public interface DataSheet {
+
+    /**
+     *  Adds a new row with given name
+     *
+     * @param name Name from the to be created row
+     * @return True when created
+     * @throws DataSheetException Thrown when row could not be added
+     */
+    boolean addRow(String name) throws DataSheetException;
+
+
     /**
      *  Gets a {@link Set} containing the name of each row
      *
