@@ -13,9 +13,8 @@ public interface DataSheet {
      *
      * @param name Name from the to be created row
      * @return True when created
-     * @throws DataSheetException Thrown when row could not be added
      */
-    boolean addRow(String name) throws DataSheetException;
+    boolean addRow(String name);
 
 
     /**
