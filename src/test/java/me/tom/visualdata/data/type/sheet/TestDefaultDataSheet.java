@@ -1,5 +1,7 @@
 package me.tom.visualdata.data.type.sheet;
 
+import me.tom.visualdata.data.type.sheet.entry.DataSheetEntryException;
+import me.tom.visualdata.data.type.sheet.entry.DefaultDataSheetEntry;
 import me.tom.visualdata.data.type.sheet.row.DataSheetRow;
 import me.tom.visualdata.data.type.sheet.row.DataSheetRowException;
 import me.tom.visualdata.data.type.sheet.row.DefaultDataSheetRow;
@@ -15,6 +17,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestDefaultDataSheet {
     private static final String DEFAULT_ROW_NAME = "Foo";
     private static final String UNUSED_ROW_NAME = "Bar";
+
+    private static final String DEFAULT_ENTRY_VALUE = "Foo Bar";
 
 
     private DefaultDataSheet dataSheet;
@@ -75,6 +79,19 @@ public class TestDefaultDataSheet {
         assertEquals(DEFAULT_ROW_NAME, dataSheet.getRowOfIndex(0).getName());
     }
 
+    @SuppressWarnings("unchecked")
+    @Test
+    void givenRowFromDataSheetByIndex_WhenAddEntry_ExpectedAddedToRowInDataSheet() throws DataSheetEntryException {
+        addDefaultRowToSheet();
+        DataSheetRow<String> row = (DataSheetRow<String>) dataSheet.getRowOfIndex(0);
+        assertTrue(row.getEntries().isEmpty());
+        assertTrue(row.addEntry(new DefaultDataSheetEntry<>(String.class, DEFAULT_ENTRY_VALUE)));
+
+        assertEquals(1, dataSheet.getRowOfIndex(0).getEntries().size());
+        assertEquals(DEFAULT_ENTRY_VALUE, dataSheet.getRowOfIndex(0).getEntries().getFirst().getValue());
+    }
+
+
     @Test
     void givenEmptyDataSheet_WhenGetRow_NameDefault_ExpectedNull() {
         assertNull(dataSheet.getRow(DEFAULT_ROW_NAME));
@@ -103,6 +120,18 @@ public class TestDefaultDataSheet {
         addDefaultRowToSheet();
         assertNotNull(dataSheet.getRow(DEFAULT_ROW_NAME));
         assertEquals(DEFAULT_ROW_NAME, dataSheet.getRow(DEFAULT_ROW_NAME).getName());
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    void givenRowFromDataSheet_WhenAddEntry_ExpectedAddedToRowInDataSheet() throws DataSheetEntryException {
+        addDefaultRowToSheet();
+        DataSheetRow<String> row = (DataSheetRow<String>) dataSheet.getRow(DEFAULT_ROW_NAME);
+        assertTrue(row.getEntries().isEmpty());
+        assertTrue(row.addEntry(new DefaultDataSheetEntry<>(String.class, DEFAULT_ENTRY_VALUE)));
+
+        assertEquals(1, dataSheet.getRow(DEFAULT_ROW_NAME).getEntries().size());
+        assertEquals(DEFAULT_ENTRY_VALUE, dataSheet.getRow(DEFAULT_ROW_NAME).getEntries().getFirst().getValue());
     }
 
     @Test
