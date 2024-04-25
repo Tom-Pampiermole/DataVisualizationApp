@@ -95,7 +95,7 @@ public class TestDataSheetRow {
      * @param entryToAdd {@link DataSheetEntry} to be added to the {@link DataSheetRow}
      * @param expectedAdded Whether it is expected that given {@link DataSheetEntry} has been added
      */
-    @SuppressWarnings({"unchecked", "DataFlowIssue", "rawtypes"})
+    @SuppressWarnings({"unchecked"})
     private void addEntryToRow(DataSheetEntry<String> entryToAdd, boolean expectedAdded) {
         DataSheetRow<String> row = (DataSheetRow<String>)this.row;
         List<DataSheetEntry<String>> oldEntries = row.getEntries();
@@ -104,19 +104,15 @@ public class TestDataSheetRow {
         }
 
         assertEquals(expectedAdded, row.addEntry(entryToAdd));
-        assertRowContainsElements((DataSheetEntry[]) oldEntries.toArray());
+        assertRowContainsElements(oldEntries.toArray(new DataSheetEntry[0]));
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     void givenRowWithEntry_WhenAddEntry_EntryAlreadyPresent_ExpectedNotAdded() {
-        DataSheetRow<String> stringRow = (DataSheetRow<String>)row;
         addEntryToRow(entry, true);
-
         addEntryToRow(entry, false);
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     void givenRowWithEntry_WhenAddNewEntry_ExpectedAdded() throws DataSheetEntryException {
         addEntryToRow(entry, true);
