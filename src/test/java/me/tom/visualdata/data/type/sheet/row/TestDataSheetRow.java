@@ -11,7 +11,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestDataSheetRow {
-    private static final String DATASHEET_ROW_CLASS_NAME = DataSheetRow.class.getSimpleName();
+    private static final String DATASHEET_ROW_CLASS_NAME = DefaultDataSheetRow.class.getSimpleName();
     private static final String DATASHEET_ROW_NAME = "Foo";
     private static final Class<?> DATASHEET_ROW_GENERIC_TYPE = String.class;
 
