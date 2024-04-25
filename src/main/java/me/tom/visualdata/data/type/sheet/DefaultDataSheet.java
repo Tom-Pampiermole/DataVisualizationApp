@@ -31,7 +31,7 @@ public class DefaultDataSheet implements DataSheet {
     @Override
     public Set<String> getRowNames() {
         return rows.stream()
-                .map(Object::toString)
+                .map(DataSheetRow::getName)
                 .collect(Collectors.toSet());
     }
 
