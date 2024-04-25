@@ -1,9 +1,9 @@
 package me.tom.visualdata.data.type.sheet;
 
 import me.tom.visualdata.data.type.sheet.entry.DataSheetEntry;
+import me.tom.visualdata.data.type.sheet.row.DataSheetRow;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 public interface DataSheet {
@@ -26,12 +26,12 @@ public interface DataSheet {
     Set<String> getRowNames();
 
     /**
-     *  Gets a {@link List} containing each {@link DataSheetEntry} from row of given index
+     *  Gets the {@link DataSheetRow} of given index
      *
-     * @param index Index of row to retrieve {@link List} of {@link DataSheetEntry} of
-     * @return {@link List} of each {@link DataSheetEntry} from row of given index
+     * @param index Index of to be retrieved {@link DataSheetRow}
+     * @return {@link DataSheetRow} of given index or null
      */
-    List<DataSheetEntry<?>> getRowOfIndex(int index);
+    DataSheetRow<?> getRowOfIndex(int index);
 
     /**
      * Gets a {@link List} containing each {@link DataSheetEntry} from row of given name
@@ -39,13 +39,20 @@ public interface DataSheet {
      * @param name Name of row to retrieve {@link List} of {@link DataSheetEntry} of
      * @return {@link List} of each {@link DataSheetEntry} from row of given index
      */
-    List<DataSheetEntry<?>> getRow(String name);
 
     /**
-     *  Gets all contents as a {@link Map} of a {@link List} containing each {@link DataSheetEntry} as value using the name as key
+     *  Gets the {@link DataSheetRow} of given index
      *
-     * @return {@link Map} of a {@link List} containing each {@link DataSheetEntry} as value using the name as key
+     * @param name Name of to be retrieved {@link DataSheetRow}
+     * @return {@link DataSheetRow} of given name or null
      */
-    Map<String, List<DataSheetEntry<?>>> getContents();
+    DataSheetRow<?> getRow(String name);
+
+    /**
+     *  Gets all contents of the sheet
+     *
+     * @return Contents of sheet as {@link List} of each {@link DataSheetRow}
+     */
+    List<DataSheetRow<?>> getContents();
 
 }
