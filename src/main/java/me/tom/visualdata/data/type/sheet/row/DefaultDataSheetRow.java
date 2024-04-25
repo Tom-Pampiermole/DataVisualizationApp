@@ -4,6 +4,7 @@ import me.tom.visualdata.data.type.sheet.entry.DataSheetEntry;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DefaultDataSheetRow<T> implements DataSheetRow<T> {
     private final Class<T> type;
@@ -23,37 +24,66 @@ public class DefaultDataSheetRow<T> implements DataSheetRow<T> {
 
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     @Override
     public Class<T> getType() {
-        return null;
+        return type;
     }
 
     @Override
     public boolean addEntry(DataSheetEntry<T> entry) {
-        return false;
+        if(entry == null) {
+            return false;
+        }
+        if(entries.contains(entry)) {
+            return false;
+        }
+
+        return entries.add(entry);
     }
 
     @Override
     public DataSheetEntry<T> removeEntry(int index) {
-        return null;
+        if(isIndexOutOfEntriesBounds(index)) {
+            return null;
+        }
+
+        return entries.remove(index);
+    }
+
+    /**
+     *  Gets whether given index is outside of bounds of {@link #entries}
+     *
+     * @param index Index to be validated
+     * @return {@link true} when {@param index} is out of bounds
+     */
+    private boolean isIndexOutOfEntriesBounds(int index) {
+        return index < 0|| index >= entries.size();
     }
 
     @Override
     public DataSheetEntry<T> getEntry(int index) {
-        return null;
+        if(isIndexOutOfEntriesBounds(index)) {
+            return null;
+        }
+
+        return entries.get(index);
     }
 
     @Override
     public List<DataSheetEntry<T>> getEntries() {
-        return null;
+        return new ArrayList<>(entries);
     }
 
     @Override
     public String toString() {
-        // Format String.format("%s: {\n\"type\": %s,\n\"entries\": [%s]\n}", DATASHEET_ROW_CLASS_NAME, genericType, entries), entry.toString());
-        return super.toString();
+        return String.format("%s: {\n\"type\": %s,\n\"entries\": [%s]\n}",
+                getClass().getSimpleName(),
+                type,
+                entries.isEmpty() ? "" : "\n" + entries.stream()
+                        .map(Object::toString)
+                        .collect(Collectors.joining(", ")));
     }
 }
