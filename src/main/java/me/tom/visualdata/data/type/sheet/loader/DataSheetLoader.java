@@ -11,11 +11,4 @@ public interface DataSheetLoader {
      */
     DataSheet load();
 
-    /**
-     *  Sets whether a header row should be loaded to given value
-     *
-     * @param loadHeaderRow True when a header row should be loaded
-     */
-    void setLoadHeaderRow(boolean loadHeaderRow);
-
 }
