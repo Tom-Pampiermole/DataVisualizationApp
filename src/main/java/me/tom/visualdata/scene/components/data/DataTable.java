@@ -44,7 +44,7 @@ public class DataTable extends TableView<String> {
             Iterator<Cell> headerRowCells = headerRow.cellIterator();
             while(headerRowCells.hasNext()) {
                 Cell headerCell = headerRowCells.next();
-                dataSheet.addRow(headerCell.toString());
+                dataSheet.addColumn(headerCell.toString());
                 System.out.printf("%20s | ", headerCell.toString());
             }
             System.out.println();

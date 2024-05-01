@@ -1,7 +1,6 @@
 package me.tom.visualdata.data.type.sheet;
 
-import me.tom.visualdata.data.type.sheet.entry.DataSheetEntry;
-import me.tom.visualdata.data.type.sheet.row.DataSheetRow;
+import me.tom.visualdata.data.type.sheet.column.DataSheetColumn;
 
 import java.util.List;
 import java.util.Set;
@@ -11,47 +10,40 @@ public interface DataSheet {
     /**
      *  Adds a new row with given name
      *
-     * @param name Name from the to be created row
+     * @param name Name from the to be created column
      * @return True when created
      */
-    boolean addRow(String name);
+    boolean addColumn(String name);
 
 
     /**
-     *  Gets a {@link Set} containing the name of each row
+     *  Gets a {@link Set} containing the name of each column
      *
-     * @return {@link Set} containing the name of each row
+     * @return {@link Set} containing the name of each column
      */
-    Set<String> getRowNames();
+    Set<String> getColumnNames();
 
     /**
-     *  Gets the {@link DataSheetRow} of given index
+     *  Gets the {@link DataSheetColumn} of given index
      *
-     * @param index Index of to be retrieved {@link DataSheetRow}
-     * @return {@link DataSheetRow} of given index or null
+     * @param index Index of to be retrieved {@link DataSheetColumn}
+     * @return {@link DataSheetColumn} of given index or null
      */
-    DataSheetRow<?> getRowOfIndex(int index);
+    DataSheetColumn<?> getColumnOfIndex(int index);
 
     /**
-     * Gets a {@link List} containing each {@link DataSheetEntry} from row of given name
+     *  Gets the {@link DataSheetColumn} of given index
      *
-     * @param name Name of row to retrieve {@link List} of {@link DataSheetEntry} of
-     * @return {@link List} of each {@link DataSheetEntry} from row of given index
+     * @param name Name of to be retrieved {@link DataSheetColumn}
+     * @return {@link DataSheetColumn} of given name or null
      */
-
-    /**
-     *  Gets the {@link DataSheetRow} of given index
-     *
-     * @param name Name of to be retrieved {@link DataSheetRow}
-     * @return {@link DataSheetRow} of given name or null
-     */
-    DataSheetRow<?> getRow(String name);
+    DataSheetColumn<?> getColumn(String name);
 
     /**
      *  Gets all contents of the sheet
      *
-     * @return Contents of sheet as {@link List} of each {@link DataSheetRow}
+     * @return Contents of sheet as {@link List} of each {@link DataSheetColumn}
      */
-    List<DataSheetRow<?>> getContents();
+    List<DataSheetColumn<?>> getContents();
 
 }

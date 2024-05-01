@@ -2,7 +2,7 @@ package me.tom.visualdata.data.type.sheet.loader;
 
 import me.tom.visualdata.data.type.sheet.DataSheet;
 import me.tom.visualdata.data.type.sheet.entry.DataSheetEntry;
-import me.tom.visualdata.data.type.sheet.row.DataSheetRow;
+import me.tom.visualdata.data.type.sheet.column.DataSheetColumn;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -62,17 +62,17 @@ public class TestExcelDataSheetLoader {
      * @param dataSheet {@link DataSheet} to have its' header row asserted
      */
     private void assertHeaderRowMatches(DataSheet dataSheet) {
-        assertNotNull(dataSheet.getRowOfIndex(0));
-        assertRowMatches(dataSheet.getRowOfIndex(0), DATASHEET_HEADERS);
+        assertNotNull(dataSheet.getColumnOfIndex(0));
+        assertRowMatches(dataSheet.getColumnOfIndex(0), DATASHEET_HEADERS);
     }
 
     /**
-     *  Asserts given {@link DataSheetRow} has values matching expected values
+     *  Asserts given {@link DataSheetColumn} has values matching expected values
      *
-     * @param row {@link DataSheetRow} to have its' values asserted
-     * @param expected Expected values from {@link DataSheetRow}
+     * @param row {@link DataSheetColumn} to have its' values asserted
+     * @param expected Expected values from {@link DataSheetColumn}
      */
-    private void assertRowMatches(DataSheetRow<?> row, List<String> expected) {
+    private void assertRowMatches(DataSheetColumn<?> row, List<String> expected) {
         List<? extends DataSheetEntry<?>> entries = row.getEntries();
         for(int i = 0; i < entries.size(); i++) {
             assertEquals(expected.get(i), entries.get(i).getValue());
@@ -86,9 +86,9 @@ public class TestExcelDataSheetLoader {
         DataSheet dataSheet = dataSheetLoader.load();
         assertHeaderRowMatches(dataSheet);
 
-        assertNotNull(dataSheet.getRowOfIndex(1));
-        assertNull(dataSheet.getRowOfIndex(2));
-        assertRowMatches(dataSheet.getRowOfIndex(1), DATASHEET_ROW_1);
+        assertNotNull(dataSheet.getColumnOfIndex(1));
+        assertNull(dataSheet.getColumnOfIndex(2));
+        assertRowMatches(dataSheet.getColumnOfIndex(1), DATASHEET_ROW_1);
     }
 
 

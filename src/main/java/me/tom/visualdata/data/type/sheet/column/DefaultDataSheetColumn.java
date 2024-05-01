@@ -1,4 +1,4 @@
-package me.tom.visualdata.data.type.sheet.row;
+package me.tom.visualdata.data.type.sheet.column;
 
 import me.tom.visualdata.data.type.sheet.entry.DataSheetEntry;
 
@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class DefaultDataSheetRow<T> implements DataSheetRow<T> {
+public class DefaultDataSheetColumn<T> implements DataSheetColumn<T> {
     private final Class<T> type;
     private final String name;
     private final List<DataSheetEntry<T>> entries;
 
-    public DefaultDataSheetRow(Class<T> type, String name) throws DataSheetRowException {
+    public DefaultDataSheetColumn(Class<T> type, String name) throws DataSheetColumnException {
         if(type == null) {
-            throw new DataSheetRowException("Cannot instantiate: type null");
+            throw new DataSheetColumnException("Cannot instantiate: type null");
         }
 
         this.type = type;

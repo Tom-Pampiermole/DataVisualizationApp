@@ -1,47 +1,47 @@
 package me.tom.visualdata.data.type.sheet;
 
-import me.tom.visualdata.data.type.sheet.row.DataSheetRow;
-import me.tom.visualdata.data.type.sheet.row.DataSheetRowException;
-import me.tom.visualdata.data.type.sheet.row.DefaultDataSheetRow;
+import me.tom.visualdata.data.type.sheet.column.DataSheetColumn;
+import me.tom.visualdata.data.type.sheet.column.DataSheetColumnException;
+import me.tom.visualdata.data.type.sheet.column.DefaultDataSheetColumn;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class DefaultDataSheet implements DataSheet {
-    private static final Class<?> ROW_DEFAULT_CLASS = String.class;     // Default class to be used when adding a new row
+    private static final Class<?> COLUMN_DEFAULT_CLASS = String.class;     // Default class to be used when adding a new row
 
 
-    private final List<DataSheetRow<?>> rows;
+    private final List<DataSheetColumn<?>> columns;
     private final System.Logger logger;
     public DefaultDataSheet() {
         logger = System.getLogger(getClass().getName());
-        rows = new ArrayList<>();
+        columns = new ArrayList<>();
     }
 
     @Override
-    public boolean addRow(String name) {
+    public boolean addColumn(String name) {
         try {
-            return rows.add(new DefaultDataSheetRow<>(ROW_DEFAULT_CLASS, name));
-        } catch (DataSheetRowException e) {
+            return columns.add(new DefaultDataSheetColumn<>(COLUMN_DEFAULT_CLASS, name));
+        } catch (DataSheetColumnException e) {
             logger.log(System.Logger.Level.ERROR, e.getMessage());
             return false;
         }
     }
 
     @Override
-    public Set<String> getRowNames() {
-        return rows.stream()
-                .map(DataSheetRow::getName)
+    public Set<String> getColumnNames() {
+        return columns.stream()
+                .map(DataSheetColumn::getName)
                 .collect(Collectors.toSet());
     }
 
     @Override
-    public DataSheetRow<?> getRowOfIndex(int index) {
+    public DataSheetColumn<?> getColumnOfIndex(int index) {
         if (isIndexOfRowOutOfBounds(index)) {
             return null;
         }
 
-        return rows.get(index);
+        return columns.get(index);
     }
 
     /**
@@ -51,19 +51,19 @@ public class DefaultDataSheet implements DataSheet {
      * @return {@link true} when index is out of bounds
      */
     private boolean isIndexOfRowOutOfBounds(int index) {
-        return index < 0 || index >= rows.size();
+        return index < 0 || index >= columns.size();
     }
 
     @Override
-    public DataSheetRow<?> getRow(String name) {
-        return rows.stream()
-                .filter(row -> row.getName().equals(name))
+    public DataSheetColumn<?> getColumn(String name) {
+        return columns.stream()
+                .filter(column -> column.getName().equals(name))
                 .findFirst()
                 .orElse(null);
     }
 
     @Override
-    public List<DataSheetRow<?>> getContents() {
-        return new ArrayList<>(rows);
+    public List<DataSheetColumn<?>> getContents() {
+        return new ArrayList<>(columns);
     }
 }
