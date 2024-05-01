@@ -21,7 +21,7 @@ public class TestExcelDataSheetLoader {
     private DataSheetLoader dataSheetLoader;
 
     @BeforeEach
-    void setupBeforeEach() {
+    void setupBeforeEach() throws DataSheetLoaderException {
         dataSheetLoader = new ExcelDataSheetLoader(DATASHEET_PATH);
     }
 
@@ -45,7 +45,7 @@ public class TestExcelDataSheetLoader {
     }
 
     @Test
-    void givenNonExistentSheet_WhenLoad_ExpectedSheetEmpty() {
+    void givenNonExistentSheet_WhenLoad_ExpectedSheetEmpty() throws DataSheetLoaderException {
         assertNull(getClass().getResource(DATASHEET_PATH_NON_EXISTENT));
         assertTrue(new ExcelDataSheetLoader(DATASHEET_PATH_NON_EXISTENT).load().getContents().isEmpty());
     }

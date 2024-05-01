@@ -4,8 +4,13 @@ import me.tom.visualdata.data.type.sheet.DataSheet;
 import me.tom.visualdata.data.type.sheet.DefaultDataSheet;
 
 public class ExcelDataSheetLoader implements DataSheetLoader {
-    public ExcelDataSheetLoader(String path) {
+    private final String path;
+    public ExcelDataSheetLoader(String path) throws DataSheetLoaderException {
+        if(path == null || path.trim().isEmpty()) {
+            throw new DataSheetLoaderException("Cannot instantiate: path null");
+        }
 
+        this.path = path;
     }
 
 
