@@ -1,71 +1,63 @@
 package me.tom.visualdata.scene.components.data;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import me.tom.visualdata.data.type.sheet.DataSheet;
-import me.tom.visualdata.data.type.sheet.DefaultDataSheet;
+import me.tom.visualdata.data.type.table.SheetDataTableLoader;
 import me.tom.visualdata.scene.components.loader.ComponentLoaderException;
 import me.tom.visualdata.scene.components.loader.FXMLComponentLoader;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.Iterator;
 
-public class DataTable extends TableView<String> {
+public class DataTable extends TableView<ObservableList<String>> {
     private static final String COMPONENT_NAME = "data/DataTable";
 
     public DataTable() throws ComponentLoaderException {
         new FXMLComponentLoader().load(COMPONENT_NAME, this);
+        setPrefWidth(600);
 
         URL urlOfFile = getClass().getClassLoader().getResource("dummydata.xlsx");
-        if(urlOfFile == null) {
-            return;
-        }
+        new SheetDataTableLoader(urlOfFile.getPath()).load(this);
 
-        try(FileInputStream fileInputStream = new FileInputStream(new File(urlOfFile.toURI()))) {
-            XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
-            XSSFSheet worksheet = workbook.getSheetAt(0);
+        addRow();
+    }
 
-            DataSheet dataSheet = new DefaultDataSheet();
-            Iterator<Row> worksheetRowIterator = worksheet.rowIterator();
-            if(!worksheetRowIterator.hasNext()) {
-                return;
+    public void addColumn(String name) {
+        final int columnIndex = getColumns().size();
+        TableColumn<ObservableList<String>, String> newColumn = new TableColumn<>(name);
+        newColumn.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().size() > columnIndex ? param.getValue().get(columnIndex) : ""));
+        getColumns().add(newColumn);
+
+        addEmptyCellsInColumnForExistentRows();
+    }
+
+    /**
+     *  Adds empty cells for each row that has fewer columns than {@link #getColumns().size() }
+     */
+    private void addEmptyCellsInColumnForExistentRows() {
+        final int amountOfColumns = getColumns().size();
+        for (ObservableList<String> row : getItems()) {
+            while (row.size() <= amountOfColumns) {
+                row.add("");
             }
-
-
-            // Load headers
-            Row headerRow = worksheetRowIterator.next();
-            Iterator<Cell> headerRowCells = headerRow.cellIterator();
-            while(headerRowCells.hasNext()) {
-                Cell headerCell = headerRowCells.next();
-                dataSheet.addColumn(headerCell.toString());
-                System.out.printf("%20s | ", headerCell.toString());
-            }
-            System.out.println();
-
-            // Load cells
-            while(worksheetRowIterator.hasNext()) {
-                Row row = worksheetRowIterator.next();
-                
-                Iterator<Cell> cellIteratorOfRow = row.cellIterator();
-                while(cellIteratorOfRow.hasNext()) {
-                    Cell cell = cellIteratorOfRow.next();
-                    System.out.printf("%20s | ", cell.toString());
-                }
-
-                System.out.println();
-            }
-
-        } catch (URISyntaxException | IOException e) {
-            e.printStackTrace();
         }
     }
 
 
+    /**
+     *  Adds an empty row to the table
+     */
+    public void addRow() {
+        ObservableList<String> row = FXCollections.observableArrayList();
+
+        // Seed row
+        int amountOfColumns = getColumns().size();
+        for (int i = 0; i < amountOfColumns; i++) {
+            row.add("Cell " + (i + 1));
+        }
+
+        getItems().add(row);
+    }
 }
