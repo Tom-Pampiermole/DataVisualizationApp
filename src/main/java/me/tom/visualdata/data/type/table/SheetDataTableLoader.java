@@ -1,5 +1,6 @@
 package me.tom.visualdata.data.type.table;
 
+import javafx.collections.ObservableList;
 import me.tom.visualdata.scene.components.data.DataTable;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -53,6 +54,7 @@ public class SheetDataTableLoader {
 
         Iterator<Row> rowIterator = sheet.rowIterator();
         addColumnsFromRowToTableViewAsColumn(dataTable, rowIterator);
+        addRowsAsEntries(dataTable, rowIterator);
     }
 
     /**
@@ -62,6 +64,8 @@ public class SheetDataTableLoader {
      * @param rowIterator {@link Iterator} of each {@link Row} to be used to add to given {@link DataTable}
      */
     private void addColumnsFromRowToTableViewAsColumn(DataTable dataTable, Iterator<Row> rowIterator) {
+        assert dataTable != null : "Cannot add row as columns: dataTable null";
+        assert rowIterator != null : "Cannot add row as columns: rowIterator null";
         if(!rowIterator.hasNext()) {
             return;
         }
@@ -69,6 +73,25 @@ public class SheetDataTableLoader {
         Iterator<Cell> cellIterator = rowIterator.next().cellIterator();
         while(cellIterator.hasNext()) {
             dataTable.addColumn(cellIterator.next().toString());
+        }
+    }
+
+    /**
+     *  Adds each row from given {@link Iterator} to given {@link DataTable} as entry
+     *
+     * @param dataTable {@link DataTable} to add each row to
+     * @param rowIterator {@link Iterator} to read each row from
+     */
+    private void addRowsAsEntries(DataTable dataTable, Iterator<Row> rowIterator) {
+        assert dataTable != null : "Cannot add row as entries: dataTable null";
+        assert rowIterator != null : "Cannot add row as entries: rowIterator null";
+        while(rowIterator.hasNext()) {
+            ObservableList<String> row = dataTable.createEmptyRow();
+            Iterator<Cell> cellIterator = rowIterator.next().cellIterator();
+            int cellIndex = 0;
+            while(cellIterator.hasNext() && cellIndex < row.size()) {
+                row.set(cellIndex++, cellIterator.next().toString());
+            }
         }
     }
 }

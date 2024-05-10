@@ -20,8 +20,6 @@ public class DataTable extends TableView<ObservableList<String>> {
 
         URL urlOfFile = getClass().getClassLoader().getResource("dummydata.xlsx");
         new SheetDataTableLoader(urlOfFile.getPath()).load(this);
-
-        addRow();
     }
 
     public void addColumn(String name) {
@@ -47,17 +45,20 @@ public class DataTable extends TableView<ObservableList<String>> {
 
 
     /**
-     *  Adds an empty row to the table
+     *  Creates an empty row in the table
+     *
+     * @return Created row
      */
-    public void addRow() {
+    public ObservableList<String> createEmptyRow() {
         ObservableList<String> row = FXCollections.observableArrayList();
 
         // Seed row
         int amountOfColumns = getColumns().size();
         for (int i = 0; i < amountOfColumns; i++) {
-            row.add("Cell " + (i + 1));
+            row.add("");
         }
 
         getItems().add(row);
+        return row;
     }
 }
