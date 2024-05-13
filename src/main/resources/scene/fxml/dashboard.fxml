@@ -3,14 +3,18 @@
 <?import javafx.scene.layout.*?>
 <?import me.tom.visualdata.scene.components.navigation.NavigationBar?>
 <?import me.tom.visualdata.scene.components.chart.PieDataChart ?>
+<?import me.tom.visualdata.scene.components.data.DataTable ?>
 
 
+<?import me.tom.visualdata.scene.components.data.DataTable?>
 <BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 
     <left>
         <NavigationBar />
     </left>
-    <right>
-        <PieDataChart />
-    </right>
+    <center>
+<!--        <PieDataChart />-->
+        <DataTable />
+
+    </center>
 </BorderPane>

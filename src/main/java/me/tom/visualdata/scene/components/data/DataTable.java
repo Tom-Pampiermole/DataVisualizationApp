@@ -16,7 +16,6 @@ public class DataTable extends TableView<ObservableList<String>> {
 
     public DataTable() throws ComponentLoaderException {
         new FXMLComponentLoader().load(COMPONENT_NAME, this);
-        setPrefWidth(600);
 
         URL urlOfFile = getClass().getClassLoader().getResource("dummydata.xlsx");
         new SheetDataTableLoader(urlOfFile.getPath()).load(this);
