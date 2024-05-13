@@ -17,4 +17,5 @@ module me.tom.visualdata.datavisualizationapp {
     exports me.tom.visualdata.scene.components;
     exports me.tom.visualdata.scene.components.navigation;
     exports me.tom.visualdata.scene.components.chart;
+    exports me.tom.visualdata.scene.components.data;
 }
