@@ -6,4 +6,6 @@ public class ComponentException extends SceneException {
     protected ComponentException(Exception exception) {
         super(exception);
     }
+
+    protected ComponentException(String message) { super(message); }
 }
